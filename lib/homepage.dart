@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/recipe_list.dart';
 import 'package:my_app/scan.dart';
 
 String qrResultInitialValue = "Not yet scanned";
@@ -47,7 +48,7 @@ class _HomepageState extends State<Homepage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: <Widget>[
+          children: [
             const Text(
               "RECIPE",
               style: TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold),
@@ -83,9 +84,26 @@ class _HomepageState extends State<Homepage> {
               child: const Text(
                 "Reset",
                 style:
-                TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+                    TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
               ),
-            )
+            ),
+            const SizedBox(
+              height: 30.0,
+            ),
+            TextButton(
+              style: flatButtonStyle,
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const RecipeList()),
+                );
+              },
+              child: const Text(
+                "Recipe list",
+                style:
+                    TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+              ),
+            ),
           ],
         ),
       ),

@@ -1,9 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:my_app/data/app_db.dart';
 import 'package:my_app/homepage.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MaterialApp(
-    home: MyApp(),
+  runApp(Provider<MyDatabase>(
+    create: (context) => MyDatabase(),
+    child: const MaterialApp(
+      home: MyApp(),
+    ),
+    dispose: (context, db) => db.close(),
   ));
 }
 
