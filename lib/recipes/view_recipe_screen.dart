@@ -4,15 +4,14 @@ import 'package:provider/provider.dart';
 import '../data/app_db.dart';
 
 class ViewRecipeScreen extends StatelessWidget {
-  final int? id;
-  final String? code;
+  final int id;
 
-  const ViewRecipeScreen({super.key, this.id, this.code});
+  const ViewRecipeScreen({super.key, required this.id});
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder<Recipe>(
-        future: Provider.of<MyDatabase>(context).getRecipeByIdOrCode(id, code),
+        future: Provider.of<MyDatabase>(context).getRecipe(id),
         builder: (context, snapshot) {
           final Recipe? recipe = snapshot.data;
           if (snapshot.connectionState != ConnectionState.done) {

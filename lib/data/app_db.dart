@@ -44,13 +44,9 @@ class MyDatabase extends _$MyDatabase {
     return await (select(recipes)..where((r) => r.id.equals(id))).getSingle();
   }
 
-  Future<Recipe> getRecipeByIdOrCode(int? id, String? code) {
-    return id != null ? getRecipe(id) : getRecipeByCode(code!);
-  }
-
-  Future<Recipe> getRecipeByCode(String code) async {
+  Future<Recipe?> getRecipeByCode(String code) async {
     return await (select(recipes)..where((r) => r.code.equals(code)))
-        .getSingle();
+        .getSingleOrNull();
   }
 
   Future<int> insertRecipe(RecipesCompanion recipe) async {

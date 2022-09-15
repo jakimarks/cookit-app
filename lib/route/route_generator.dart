@@ -17,9 +17,6 @@ class RouteGenerator {
       case viewRecipeRoute:
         if (args is int) {
           return MaterialPageRoute(builder: (_) => ViewRecipeScreen(id: args));
-        } else if (args is String) {
-          return MaterialPageRoute(
-              builder: (_) => ViewRecipeScreen(code: args));
         }
         return _errorRoute(settings);
       default:

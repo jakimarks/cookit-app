@@ -3,6 +3,9 @@ import 'package:my_app/menu.dart';
 import 'package:my_app/recipes/recipe_list_screen.dart';
 import 'package:my_app/route/routes.dart';
 import 'package:my_app/scan/scan.dart';
+import 'package:provider/provider.dart';
+
+import 'data/app_db.dart';
 
 String qrResultInitialValue = "Not yet scanned";
 
@@ -22,11 +25,17 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _selectedMenuItem = 0;
-  String? qrResult = qrResultInitialValue;
 
-  _goToRecipe(String? code) {
-    print(code);
-    Navigator.pushNamed(context, viewRecipeRoute, arguments: code);
+  evaluateCode(String? code) {
+    if (code != null) {
+      Provider.of<MyDatabase>(context, listen: false)
+          .getRecipeByCode(code)
+          .then((recipe) => {if (recipe != null) viewRecipe(recipe)});
+    }
+  }
+
+  viewRecipe(Recipe recipe) {
+    Navigator.pushNamed(context, viewRecipeRoute, arguments: recipe.id);
     setState(() {
       _selectedMenuItem = 0;
     });
@@ -37,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
       case 0:
         return const RecipeListScreen();
       case 1:
-        return Scan(onDetect: _goToRecipe);
+        return Scan(onDetect: evaluateCode);
     }
     return null;
   }
@@ -45,12 +54,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void _onItemTapped(int index) {
     setState(() {
       _selectedMenuItem = index;
-    });
-  }
-
-  void updateScanResult(String? code) {
-    setState(() {
-      qrResult = code;
     });
   }
 
