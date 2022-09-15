@@ -1,28 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/data/app_db.dart';
-import 'package:my_app/homepage.dart';
+import 'package:my_app/route/routes.dart';
 import 'package:provider/provider.dart';
+import 'package:my_app/route/route_generator.dart';
 
 void main() {
   runApp(Provider<MyDatabase>(
     create: (context) => MyDatabase(),
     child: const MaterialApp(
-      home: MyApp(),
+      onGenerateRoute: RouteGenerator.generateRoute,
+      initialRoute: homeRoute,
     ),
     dispose: (context, db) => db.close(),
   ));
-}
-
-class MyApp extends StatefulWidget {
-  const MyApp({super.key});
-
-  @override
-  State<MyApp> createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  Widget build(BuildContext context) {
-    return const Homepage();
-  }
 }

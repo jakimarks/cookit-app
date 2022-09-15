@@ -4,7 +4,9 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 typedef StringCallback = void Function(String? code);
 
 class Scan extends StatelessWidget {
-  const Scan({super.key});
+  final Function(String?) onDetect;
+
+  const Scan({super.key, required this.onDetect});
 
   @override
   Widget build(BuildContext context) {
@@ -16,10 +18,9 @@ class Scan extends StatelessWidget {
             children: [
               MobileScanner(
                 fit: BoxFit.contain,
-                onDetect: (code, args) {
-                  Navigator.pop(context, code.rawValue);
+                onDetect: (code, _) {
+                  onDetect(code.rawValue);
                 },
-                //    this.code = code.rawValue;
               ),
             ],
           );
