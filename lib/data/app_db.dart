@@ -30,9 +30,9 @@ class MyDatabase extends _$MyDatabase {
       await m.createAll();
 
       await insertRecipe(const RecipesCompanion(
-          title: Value("Spaghetti Carbonara"), code: Value("cookit!#1")));
+          title: Value("Spaghetti Carbonara"), code: Value("cookit!#1"), imagePath: Value("assets/images/carbonara.jpg")));
       await insertRecipe(const RecipesCompanion(
-          title: Value("Flammkuchen"), code: Value("cookit!#2")));
+          title: Value("Flammkuchen"), code: Value("cookit!#2"), imagePath: Value("assets/images/flammkuchen.jpg")));
     });
   }
 

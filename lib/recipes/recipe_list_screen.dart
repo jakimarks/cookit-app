@@ -25,22 +25,36 @@ class _RecipeListScreenState extends State<RecipeListScreen> {
           }
           if (recipes != null) {
             return ListView.builder(
+                padding: const EdgeInsets.all(8.0),
                 itemCount: recipes.length,
                 itemBuilder: (context, index) {
                   final recipe = recipes[index];
+
                   return GestureDetector(
                       onTap: () {
                         Navigator.pushNamed(context, viewRecipeRoute,
                             arguments: recipe.id);
                       },
                       child: Card(
+                          shape: const RoundedRectangleBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8.0))),
                           child: Column(
-                        children: [
-                          Text(recipe.id.toString()),
-                          Text(recipe.title.toString()),
-                          Text(recipe.code.toString())
-                        ],
-                      )));
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(8.0),
+                                    topRight: Radius.circular(8.0),
+                                  ),
+                                  child: Image.asset(recipe.imagePath,
+                                      height: 150, fit: BoxFit.fitWidth)),
+                              ListTile(
+                                  title: Text(
+                                recipe.title.toString(),
+                              ))
+                            ],
+                          )));
                 });
           }
 

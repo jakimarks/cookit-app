@@ -6,4 +6,6 @@ class Recipes extends Table {
   TextColumn get title => text().withLength(min: 5, max: 100)();
 
   TextColumn get code => text().withLength(min: 5, max: 100)();
+
+  TextColumn get imagePath => text()();
 }
