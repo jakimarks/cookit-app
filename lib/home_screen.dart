@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_app/menu.dart';
-import 'package:my_app/recipes/recipe_list_screen.dart';
+import 'package:my_app/recipes/list/recipe_list_screen.dart';
 import 'package:my_app/route/routes.dart';
 import 'package:my_app/scan/scan.dart';
 import 'package:provider/provider.dart';
