@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../data/app_db.dart';
+import '../../data/app_db.dart';
 
 class ViewRecipeScreen extends StatelessWidget {
   final int id;
@@ -23,15 +23,15 @@ class ViewRecipeScreen extends StatelessWidget {
           if (recipe != null) {
             return Scaffold(
                 appBar: AppBar(
-                  title: const Text("Recipe"),
+                  title: Text(recipe.title.toString()),
                   backgroundColor: Colors.green,
                   centerTitle: true,
                 ),
                 body: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Text(recipe.id.toString()),
-                    Text(recipe.title.toString()),
-                    Text(recipe.code.toString())
+                    Image.asset(recipe.imagePath,
+                        height: 250, fit: BoxFit.fitWidth)
                   ],
                 ));
           }
